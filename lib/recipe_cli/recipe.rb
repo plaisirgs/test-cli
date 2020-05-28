@@ -1,5 +1,5 @@
 #frozen_string_literal :true
 
-class Nutrition
-    puts "Nutrition class loaded"
+class Recipe
+    puts "Recipe class loaded"
 end
