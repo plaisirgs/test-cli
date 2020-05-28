@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/nutrition_cli.rb'
+require_relative '../lib/recipe_cli.rb'
 
 #Cli.new.run instantiates 
