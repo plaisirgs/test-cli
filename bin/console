@@ -10,5 +10,11 @@ require "test/cli"
 # require "pry"
 # Pry.start
 
+#!/usr/bin/env ruby
+
+require_relative '../lib/nutrition_cli.rb'
+
 require "irb"
 IRB.start(__FILE__)
+
+Pry.start
