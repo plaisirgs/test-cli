@@ -8,6 +8,7 @@ class Recipe
     def initialize
         @name = name
         @id = id
+        @@all << self
     end
 
     def self.all

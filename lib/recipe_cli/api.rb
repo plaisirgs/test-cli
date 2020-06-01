@@ -1,22 +1,27 @@
 # frozen_string_literal: true
-
+require 'pry'
 class Api
+    attr_accessor :categories
     BASE_URL = 'https://www.themealdb.com/api/json/v1/1/'
-
+    
     def meal_categories
-        categories = []
+        @categories = []
         category_number = 1
         res = RestClient.get(BASE_URL + 'categories.php')
         data = JSON.parse(res.body)
+        binding.pry
         data["categories"].each do |category|
         if category["strCategory"] == "Miscellaneous" || category["strCategory"] == "Side" || category["strCategory"] == "Starter"
            next 
         else
-        categories << category_number.to_s + ". " + category["strCategory"] 
+            new_category = Category.new(category['strCategory'], category['strCategoryThumb'])
+            @categories << new_category
+        )
+        @categories << category_number.to_s + ". " + category["strCategory"] 
         category_number += 1
         end
         end 
-        categories
+        @categories
     end
 
     def recipe_from_meal_id(idMeal) #when I entered in the number here for idMeal it works in the terminal
@@ -27,9 +32,25 @@ class Api
     end
 end
   
+    #What will be displayed to the user:
+
 
 end
 
+class Category
+ attr_accessor :name, :picture
+ @@all = []
+
+ def initialize(name, picture)
+    @name = name 
+    @picture = picture 
+    @@all << self 
+ end 
+
+
+
+
+end
 #Meal Categories -> Category -> Meal ID
 #provides data for CLI
 # Project Outline
