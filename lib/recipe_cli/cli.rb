@@ -6,8 +6,8 @@ class Cli
     def init
         api = Api.new
         print_welcome
-        user_input
         choose_recipe
+        select_category
     end
 
     def print_welcome
@@ -15,13 +15,16 @@ class Cli
     end
 
     def user_input
-        gets.chomp
+        input = gets.strip
     end
 
     def choose_recipe
         puts "Hello, Chef #{user_input.capitalize}! Today you will be able to find a delicious recipe to prepare." 
         puts "To get started, enter the number of the meal category."
-        
+    end
+
+    def select_category
+        Category.all
     end
 
     # def run

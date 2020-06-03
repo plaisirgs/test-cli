@@ -1,8 +1,5 @@
 
 
-
-
-
 class Category
     attr_accessor :name, :picture
     @@all = []

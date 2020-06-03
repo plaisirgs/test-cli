@@ -14,6 +14,8 @@ class Api
                 new_category = Category.new(category['strCategory'], category['strCategoryThumb'])
             end
         end 
+        new_category
+        binding.pry
     end
 
     # def recipe_from_meal_id(idMeal) #when I entered in the number here for idMeal it works in the terminal
