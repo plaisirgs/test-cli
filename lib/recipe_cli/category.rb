@@ -1,16 +1,17 @@
 
 
 class Category
-    attr_accessor :name, :picture
+    attr_accessor :name
     @@all = []
    
-    def initialize(name, picture)
+    def initialize(name)
        @name = name 
-       @picture = picture 
        @@all << self 
     end 
       
     def self.all
         @@all
     end
+
 end
+

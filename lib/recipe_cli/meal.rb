@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-class Recipe
+class Meal
+    attr_accessor :name, :number
+    @@all = []
+   
 
-    @@all = [ ]
-    attr_accessor  :name, :id, :ingredients, :link
-
-    def initialize
+    def initialize(name)
         @name = name
-        @id = id
+        @number = number
         @@all << self
     end
 
