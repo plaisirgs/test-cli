@@ -17,13 +17,15 @@ class Api
         end
     end 
 
-    def self.get_category(category)
-        res = RestClient.get(BASE_URL + 'filter.php?' + "c=#{category}")
+    def self.get_recipes
+        res = RestClient.get(BASE_URL + "filter.php?c=#{"strCategory"}")
         data = JSON.parse(res.body)
-        data["meals"].each do |meal|
-            puts "#{meal.name}
-        binding.pry
-        end
+        
+    end
+
+    def self.get_id
+        res = RestClient.get(BASE_URL + "lookup.php?i=#{"idMeal"}")
+        data = JSON.parse(res.body) 
     end
 end
 

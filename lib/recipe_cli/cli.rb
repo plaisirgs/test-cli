@@ -8,9 +8,8 @@ class Cli
         print_welcome
         user_selection
         display_categories
-        Api.get_category(category)
-        
-        
+        select_category
+    
     end
 
     def print_welcome
@@ -42,7 +41,6 @@ class Cli
           puts "#{i}. #{category.name}"
         end
     end
-
 
 
 end

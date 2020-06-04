@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
-class Meal
-    attr_accessor :name, :number
+class Recipe
+    attr_accessor :name
     @@all = []
    
 
     def initialize(name)
         @name = name
-        @number = number
         @@all << self
     end
 
