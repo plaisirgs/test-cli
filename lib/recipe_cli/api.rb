@@ -2,7 +2,7 @@ require_relative "./cli"
 require 'pry'
 
 class Api
-    attr_accessor :categories, :meals
+    
     BASE_URL = 'https://www.themealdb.com/api/json/v1/1/'
     
     def self.meal_categories
@@ -17,15 +17,28 @@ class Api
         end
     end 
 
-    def self.get_recipes
-        res = RestClient.get(BASE_URL + "filter.php?c=#{"strCategory"}")
+    def self.get_recipes(category)
+        res = RestClient.get(BASE_URL + "filter.php?c=#{category["strCategory"]}")  
         data = JSON.parse(res.body)
-        
+        data["meals"].each do |meal|
+            new_recipe = Recipe.new(meal["strMeal"], meal["idMeal"])
+        end
     end
 
-    def self.get_id
-        res = RestClient.get(BASE_URL + "lookup.php?i=#{"idMeal"}")
+    def self.get_id(meal)
+        ingredients = []
+        res = RestClient.get(BASE_URL + "lookup.php?i=#{meal["idMeal"]}")
         data = JSON.parse(res.body) 
+        binding.pry
+        meal_details = data["meals"].first
+        (1..20).each do |i|
+           if meal_details["strIngredient#{i}"] == "" || meal_details["strIngredient#{i}"] == nil
+            next
+           else
+            ingredients << meal_details["strIngredient#{i}"]
+           end
+        end
+        binding.pry
     end
 end
 

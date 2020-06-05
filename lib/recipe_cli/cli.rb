@@ -8,8 +8,11 @@ class Cli
         print_welcome
         user_selection
         display_categories
-        select_category
-    
+        category_name = select_category
+        Api.get_recipes("strCategory" => category_name)
+        display_recipes
+        recipe_id = select_recipe
+
     end
 
     def print_welcome
@@ -26,13 +29,18 @@ class Cli
     end
       
     def select_category
-       input = user_input.to_i
-        while !input.between?(1, Category.all.length) 
+       raw_input = user_input
+       input = raw_input.to_i
+        while !input.between?(1, Category.all.length) && input.to_s == raw_input
             puts "Please select again from the available categories."
             display_categories
-            input = user_input.to_i
+            raw_input = user_input
+            input = raw_input.to_i
         end
-        puts "You have selected #{Category.all[input - 1].name}. Here are the available #{Category.all[input - 1].name} recipes:"
+        category_name = Category.all[input - 1].name
+        #=> "Beef"
+        puts "You have selected #{category_name}. Here are the available #{category_name} recipes:"
+        return category_name
     end
    
    
@@ -42,5 +50,32 @@ class Cli
         end
     end
 
+    
+    def display_recipes
+        Recipe.all.each.with_index(1) do |recipe, i|
+          puts "#{i}. #{recipe.name}"
+        end
+    end
+
+    def select_recipe
+        raw_input = user_input
+        input = raw_input.to_i
+         while !input.between?(1, Recipe.all.length) && input.to_s == raw_input
+             puts "Please select again from the available recipes."
+             display_recipes
+             raw_input = user_input
+             input = raw_input.to_i
+         end
+        recipe_name = Recipe.all[input - 1].name
+         #=> "Beef"
+         puts "You have selected #{recipe_name}."
+         return Recipe.all[input - 1].id
+     end
+    
+     #display_recipe
+     #would you like to continue.. y/n
+     #exit the program
+     #goodbye
+     
 
 end
