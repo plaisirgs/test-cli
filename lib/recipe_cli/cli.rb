@@ -7,20 +7,28 @@ class Cli
         Api.meal_categories
         print_welcome
         user_selection
+        run
+    end
+    
+    def run
         display_categories
         category_name = select_category
         Api.get_recipes("strCategory" => category_name)
         display_recipes
-        recipe_id = select_recipe
-
+        updated_recipe = Api.get_details(select_recipe)
+        #display_details(updated_recipe)
+        print_continue
+        continue?(user_input)
     end
+
+    
 
     def print_welcome
         puts "Welcome to TheMealDB, please enter in your first name."
     end
 
     def user_input
-        input = gets.strip
+        gets.strip
     end
 
     def user_selection
@@ -38,7 +46,6 @@ class Cli
             input = raw_input.to_i
         end
         category_name = Category.all[input - 1].name
-        #=> "Beef"
         puts "You have selected #{category_name}. Here are the available #{category_name} recipes:"
         return category_name
     end
@@ -66,16 +73,25 @@ class Cli
              raw_input = user_input
              input = raw_input.to_i
          end
-        recipe_name = Recipe.all[input - 1].name
-         #=> "Beef"
-         puts "You have selected #{recipe_name}."
-         return Recipe.all[input - 1].id
+        recipe = Recipe.all[input - 1]
+        puts "You have selected #{recipe.name}."
+        recipe
      end
     
-     #display_recipe
-     #would you like to continue.. y/n
-     #exit the program
-     #goodbye
-     
+     def print_continue
+        puts "Would you like to continue? (y/n)"
+    end
 
+     def continue?(choice)
+        if choice == "y"
+            display_recipes
+        else
+            print_goodbye
+            exit
+        end
+    end
+
+    def print_goodbye
+        puts "Thanks for using MealDB. Goodbye!"
+    end
 end

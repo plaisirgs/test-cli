@@ -25,20 +25,19 @@ class Api
         end
     end
 
-    def self.get_id(meal)
-        ingredients = []
-        res = RestClient.get(BASE_URL + "lookup.php?i=#{meal["idMeal"]}")
+    def self.get_details(recipe)
+        recipe_ingredients = []
+        res = RestClient.get(BASE_URL + "lookup.php?i=#{recipe.id}")
         data = JSON.parse(res.body) 
-        binding.pry
         meal_details = data["meals"].first
         (1..20).each do |i|
            if meal_details["strIngredient#{i}"] == "" || meal_details["strIngredient#{i}"] == nil
             next
            else
-            ingredients << meal_details["strIngredient#{i}"]
+            recipe_ingredients << meal_details["strIngredient#{i}"]
            end
         end
-        binding.pry
+        recipe.ingredients = recipe_ingredients
     end
 end
 
