@@ -5,7 +5,7 @@ class Recipe
     @@all = []
    
 
-    def initialize(name, id)
+    def initialize(name,id)
         @name = name
         @id = id
         @area = area

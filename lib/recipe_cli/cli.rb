@@ -55,7 +55,6 @@ class Cli
         end
     end
 
-    
     def display_recipes
         Recipe.all.each.with_index(1) do |recipe, i|
           puts "#{i}. #{recipe.name}"
@@ -67,7 +66,8 @@ class Cli
         updated_recipe_two = update + ", and #{updated_recipe[-1]}."
         puts "The ingredients needed for this recipe are " + "#{updated_recipe_two}".downcase
     end
-
+ 
+    
     def select_recipe
         raw_input = user_input
         input = raw_input.to_i
@@ -82,17 +82,16 @@ class Cli
         recipe
      end
 
-     
      def print_continue
         puts "Would you like to continue? (y/n)"
     end
 
      def continue?(choice)
         if choice == "y"
-          puts "Thanks"  
+          puts "Thanks" #test message  
         else
-            print_goodbye
-            exit
+          print_goodbye
+          exit
         end
     end
 
