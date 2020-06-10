@@ -38,5 +38,8 @@ class Api
            end
         end
         recipe.ingredients = recipe_ingredients
+        recipe.area = meal_details["strArea"]
+        recipe.instructions = meal_details["strInstructions"]
+        recipe
     end
 end 

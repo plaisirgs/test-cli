@@ -62,9 +62,9 @@ class Cli
     end
 
     def display_details(updated_recipe)
-        update = updated_recipe[0...-1].join(", ")
-        updated_recipe_two = update + ", and #{updated_recipe[-1]}."
-        puts "The ingredients needed for this recipe are " + "#{updated_recipe_two}".downcase
+        puts updated_recipe.ingredients.join(", ")
+        puts updated_recipe.area
+        puts updated_recipe.instructions
     end
  
     
