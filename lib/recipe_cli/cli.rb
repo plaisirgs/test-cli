@@ -17,8 +17,7 @@ class Cli
         display_recipes
         updated_recipe = Api.get_details(select_recipe)
         display_details(updated_recipe)
-        print_continue
-        continue?(user_input)
+        continue?
     end
 
     def print_welcome
@@ -62,11 +61,14 @@ class Cli
     end
 
     def display_details(updated_recipe)
-        puts updated_recipe.ingredients.join(", ")
-        puts updated_recipe.area
-        puts updated_recipe.instructions
+        puts "This recipe is a part of #{updated_recipe.area.capitalize} cuisine."
+        update = updated_recipe.ingredients[0...-1].join(", ")
+        updated_recipe_ingredients = update + ", and #{updated_recipe.ingredients[-1]}."
+        puts "The ingredients needed for this recipe are " + "#{updated_recipe_ingredients}".downcase
+        puts "To prepare this recipe follow these instructions: " 
+        print updated_recipe.instructions.split("\r\n").join(" ")
     end
- 
+
     
     def select_recipe
         raw_input = user_input
@@ -82,19 +84,24 @@ class Cli
         recipe
      end
 
-     def print_continue
-        puts "Would you like to continue? (y/n)"
+     def continue?
+        puts " "
+        continue_question = print "Would you like to select another recipe from this category? (yes or no) "
+        reply = gets.chomp.downcase
+        while reply != "yes" || reply != "no"
+            if reply == "no"
+                print_goodbye
+                exit
+            else
+                display_recipes
+                select_recipe
+            #display the details of the recipe 
+            end 
+        break
+     end
     end
-
-     def continue?(choice)
-        if choice == "y"
-          puts "Thanks" #test message  
-        else
-          print_goodbye
-          exit
-        end
-    end
-
+        
+          
     def print_goodbye
         puts "Thanks for using TheMealDB. Goodbye!"
     end
