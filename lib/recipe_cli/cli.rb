@@ -85,22 +85,20 @@ class Cli
      end
 
      def continue?
-        puts " "
+        puts
         continue_question = print "Would you like to select another recipe from this category? (yes or no) "
         reply = gets.chomp.downcase
-        while reply != "yes" || reply != "no"
             if reply == "no"
                 print_goodbye
                 exit
-            else
+            elsif reply == "yes"
                 display_recipes
-                select_recipe
-            #display the details of the recipe 
-            end 
-        break
-     end
-    end
-        
+                select_recipe    
+            else reply != "yes" || reply != "no"
+                puts "Please answer with a yes or a no."
+                continue?
+            end
+        end
           
     def print_goodbye
         puts "Thanks for using TheMealDB. Goodbye!"
