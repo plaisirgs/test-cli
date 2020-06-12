@@ -20,6 +20,13 @@ class Cli
         continue?
     end
 
+    def recipe_menu
+        display_recipes
+        updated_recipe = Api.get_details(select_recipe)
+        display_details(updated_recipe)
+        continue?
+    end
+
     def print_welcome
         puts "Welcome to TheMealDB, please enter in your first name."
     end
@@ -53,6 +60,7 @@ class Cli
           puts "#{i}. #{category.name}"
         end
     end
+
 
     def display_recipes
         Recipe.all.each.with_index(1) do |recipe, i|
@@ -92,9 +100,8 @@ class Cli
                 print_goodbye
                 exit
             elsif reply == "yes"
-                display_recipes
-                select_recipe    
-            else reply != "yes" || reply != "no"
+                recipe_menu  
+            else 
                 puts "Please answer with a yes or a no."
                 continue?
             end
