@@ -1,8 +1,17 @@
-HELLO WORLD
+## TheMealDB
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/test/cli`. To experiment with that code, run `bin/console` for an interactive prompt.
+Welcome to TheMealDB! 
 
-TODO: Delete this and the text above, and describe your gem
+## Overview 
+
+This CLI works with TheMealDB API and provides three levels of data. First, the CLI displays 11 meal categories including beef, chicken, dessert, lamb, pasta, pork, seafood, vegan, vegetarian, breakfast, and goat. The user is able to select a meal category and then the categories corresponding to the meal category are displayed. The user can then select a recipe and recieve the ingredients necessary to prepare the recipe, the origin of the recipe (ex. "This recipe is part of Japanese cuisine."), and the detailed instructions on how to prepare the recipe. 
+
+The code is split into four files:
+api.rb:interacts with cli.rb and makes calls to the API
+category.rb: displays the 11 meal categories
+cli.rb: handles CLI display logic and user input
+recipe.rb: displays the recipes' ingredients, origins, and instructions 
+
 
 ## Installation
 
@@ -20,19 +29,9 @@ Or install it yourself as:
 
     $ gem install test-cli
 
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/'adept-integer-5011'/test-cli. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/plaisirgs/test-cli. This project is intended to be a safe, welcoming space for collaboration, and contributors. 
 
 ## License
 
@@ -40,4 +39,6 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Test::Cli project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/'adept-integer-5011'/test-cli/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Test::Cli project’s codebases, issue trackers, chat rooms and mailing lists are expected to adhere to the Contributor Covenant Code of Conduct: https://www.contributor-covenant.org/version/2/0/code_of_conduct/code_of_conduct.md 
+
+
