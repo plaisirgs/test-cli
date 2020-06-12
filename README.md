@@ -29,6 +29,10 @@ Or install it yourself as:
 
     $ gem install test-cli
 
+## Usage
+
+To interact with the CLI type in 'bin/run' in the terminal.
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/plaisirgs/test-cli. This project is intended to be a safe, welcoming space for collaboration, and contributors. 
