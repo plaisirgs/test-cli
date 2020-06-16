@@ -12,8 +12,7 @@ class Cli
     
     def run
         display_categories
-        category_name = select_category
-        Api.get_recipes("strCategory" => category_name)
+        Api.get_recipes(select_category)
         display_recipes
         updated_recipe = Api.get_details(select_recipe)
         display_details(updated_recipe)
