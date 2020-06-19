@@ -13,7 +13,6 @@ class Api
                 Category.new(category["strCategory"])
             end
         end
-
     end 
 
     def self.get_recipes(category)

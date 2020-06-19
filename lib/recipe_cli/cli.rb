@@ -38,15 +38,18 @@ class Cli
         puts "Hello, Chef #{user_input.capitalize}! Today you will be able to find a delicious recipe to prepare." 
         puts "To get started, enter the number of the meal category."
     end
-      
+    
+    def valid_input?(raw_input)
+        input = raw_input.to_i
+        input.between?(1, Category.all.length) && input.to_s == raw_input
+    end
+
     def select_category
        raw_input = user_input
-       input = raw_input.to_i
-        while !input.between?(1, Category.all.length) && input.to_s == raw_input
+        while !valid_input?(raw_input)
             puts "Please select again from the available categories."
             display_categories
             raw_input = user_input
-            input = raw_input.to_i
         end
         category_name = Category.all[input - 1].name
         puts "You have selected #{category_name}. Here are the available #{category_name} recipes:"
@@ -55,25 +58,22 @@ class Cli
    
    
     def display_categories
-        Category.all.each.with_index(1) do |category, i|
-          puts "#{i}. #{category.name}"
+        Category.all.each_with_index do |category, i|
+          puts "#{i+1}. #{category.name}" 
         end
     end
 
 
     def display_recipes
-        Recipe.all.each.with_index(1) do |recipe, i|
-          puts "#{i}. #{recipe.name}"
+        Recipe.all.each_with_index do |recipe, i|
+          puts "#{i+1}. #{recipe.name}"
         end
     end
 
     def display_details(updated_recipe)
-        puts "This recipe is a part of #{updated_recipe.area.capitalize} cuisine."
-        update = updated_recipe.ingredients[0...-1].join(", ")
-        updated_recipe_ingredients = update + ", and #{updated_recipe.ingredients[-1]}."
-        puts "The ingredients needed for this recipe are " + "#{updated_recipe_ingredients}".downcase
-        puts "To prepare this recipe follow these instructions: " 
-        print updated_recipe.instructions.split("\r\n").join(" ")
+        updated_recipe.display_recipe_type
+        updated_recipe.display_ingredients
+        updated_recipe.display_instructions
     end
 
     

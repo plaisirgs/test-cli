@@ -14,4 +14,3 @@ class Category
     end
 end
 
-
