@@ -10,17 +10,18 @@ class Api
         data = JSON.parse(res.body)
         data["categories"].each do |category|
             unless category["strCategory"] == "Miscellaneous" || category["strCategory"] == "Side" || category["strCategory"] == "Starter"
-                new_category = Category.new(category["strCategory"])
+                Category.new(category["strCategory"])
             end
         end
+
     end 
 
     def self.get_recipes(category)
         res = RestClient.get(BASE_URL + "filter.php?c=#{category}")  
         data = JSON.parse(res.body)
         data["meals"].each do |meal|
-            new_recipe = Recipe.new(meal["strMeal"], meal["idMeal"])
-        end
+            Recipe.new(meal["strMeal"], meal["idMeal"])
+        end  
     end
 
     def self.get_details(recipe)

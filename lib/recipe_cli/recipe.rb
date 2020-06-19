@@ -8,16 +8,11 @@ class Recipe
     def initialize(name,id)
         @name = name
         @id = id
-        @area = area
-        @ingredients = ingredients
-        @instructions = instructions
         @@all << self
     end
 
     def self.all
         @@all 
     end
-
 end
-
 

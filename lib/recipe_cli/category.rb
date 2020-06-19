@@ -1,17 +1,17 @@
 
 
-class Category
+class Category 
     attr_accessor :name
     @@all = []
    
     def initialize(name)
        @name = name 
-       @@all << self 
+       @@all << self  
     end 
       
     def self.all
         @@all
     end
-
 end
+
 
