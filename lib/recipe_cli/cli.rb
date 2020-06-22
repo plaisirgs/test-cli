@@ -44,14 +44,20 @@ class Cli
         input.between?(1, Category.all.length) && input.to_s == raw_input
     end
 
+    def valid_input_two?(raw_input)
+        input = raw_input.to_i
+        input.between?(1, Recipe.all.length) && input.to_s == raw_input
+    end
+
     def select_category
        raw_input = user_input
+       input = raw_input.to_i
         while !valid_input?(raw_input)
             puts "Please select again from the available categories."
             display_categories
             raw_input = user_input
         end
-        category_name = Category.all[input - 1].name
+        category_name = Category.all[input-1].name
         puts "You have selected #{category_name}. Here are the available #{category_name} recipes:"
         return category_name
     end
@@ -71,7 +77,7 @@ class Cli
     end
 
     def display_details(updated_recipe)
-        updated_recipe.display_recipe_type
+        updated_recipe.display_recipe_area
         updated_recipe.display_ingredients
         updated_recipe.display_instructions
     end
@@ -80,12 +86,11 @@ class Cli
     def select_recipe
         raw_input = user_input
         input = raw_input.to_i
-         while !input.between?(1, Recipe.all.length) && input.to_s == raw_input
+        while !valid_input_two?(raw_input)
              puts "Please select again from the available recipes."
              display_recipes
              raw_input = user_input
-             input = raw_input.to_i
-         end
+        end
         recipe = Recipe.all[input - 1]
         puts "You have selected #{recipe.name}."
         recipe
