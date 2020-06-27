@@ -57,6 +57,7 @@ class Cli
             display_categories
             raw_input = user_input
         end
+        # binding.pry
         category_name = Category.all[input-1].name
         puts "You have selected #{category_name}. Here are the available #{category_name} recipes:"
         return category_name

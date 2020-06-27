@@ -15,6 +15,18 @@ class Recipe
         @@all 
     end
 
+    def self.find_by_name(str)
+        # collection = []
+        # @@all.select do |recipe|
+        #     if recipe.name.downcase.include?(str.downcase) 
+        #         collection << recipe
+        #     end
+        # end
+        # collection
+        @@all.select { |recipe| recipe.name.downcase.include?(str.downcase) }
+        #this method will return an array of all the recupes that have the str in it's name
+    end
+
     def display_ingredients
         update = self.ingredients[0...-1].join(", ")
         updated_recipe_ingredients = update + ", and #{self.ingredients[-1]}."
